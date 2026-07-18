@@ -47,7 +47,7 @@ function App() {
     <div>
       {
         
-        (loading || preloadedData.length < 3 || imageLoading || !preloadedData[dataIndex]) && (
+        (preloadedData.length < 3 || imageLoading || !preloadedData[dataIndex]) && (
           <div className="h-dvh w-dvw flex justify-center items-center bg-black z-100 absolute">
             <LoadingSpinner/>
           </div>
