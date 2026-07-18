@@ -17,16 +17,6 @@ const API_KEY = import.meta.env.VITE_NASA_API;
 function App() {
   const preloadedData = useDataStore((state) => state.preloadedData);
 
-  const imageUrl = useDataStore((state) => state.imageUrl);
-  const setImageUrl = useDataStore((state) => state.imageUrl);
-
-  const apiUrl = useDataStore((state) => state.apiUrl);
-  const setApiUrl = useDataStore((state) => state.setApiUrl);
-
-  const fetchData = useDataStore((state) => state.fetchData);
-
-  const data = useDataStore((state) => state.data);
-
   const initData = useDataStore((state) => state.initData);
   const loadData = useDataStore((state) => state.loadData);
 
