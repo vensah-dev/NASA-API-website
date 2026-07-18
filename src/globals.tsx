@@ -89,10 +89,7 @@ export const useDataStore = create<DataState>((set, get) => ({
         const imageURL = newData.url
         await preloadImage(imageURL)
 
-        const newPreloaded = get().preloadedData
-        newPreloaded.push(newData)
-
-        set({ preloadedData: newPreloaded });
+        set((state)=>({ preloadedData: [...state.preloadedData, newData] }));
 
         console.log(get().preloadedData)
     

@@ -21,18 +21,15 @@ function App() {
   const loadData = useDataStore((state) => state.loadData);
 
 
-  const [imageLoading, setImageLoading] = useState(true);
   const [dataIndex, setDataIndex] = useState(0);
 
   function nextData(){
     setDataIndex(dataIndex+1); 
     loadData(); 
-    setImageLoading(true);
   }
   function backData(){
     if(dataIndex-1 >= 0){
       setDataIndex(dataIndex-1); 
-      setImageLoading(true);
 
     }
   }
@@ -46,8 +43,7 @@ function App() {
   return (
     <div>
       {
-        
-        (preloadedData.length < 3 || imageLoading || !preloadedData[dataIndex]) && (
+        (preloadedData.length < 3) && (
           <div className="h-dvh w-dvw flex justify-center items-center bg-black z-100 absolute">
             <LoadingSpinner/>
           </div>
@@ -55,7 +51,7 @@ function App() {
       }
 
       {
-        preloadedData[dataIndex] && (
+        (
           <div className='flex flex-col'>
             {preloadedData.map((data, index) => (
               <div className='flex flex-col gap-6 z-0' key={index}>
@@ -63,7 +59,6 @@ function App() {
                 src={data.url}
                 alt={"image of thingy"}
                 className='h-dvh w-dvw object-cover'
-                onLoad={()=>(setImageLoading(false))}
                 />
 
                 <div className='gap-3 absolute opacity-50 z-10 pt-2 pl-4' key={index}>
