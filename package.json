@@ -1,6 +1,5 @@
 {
   "name": "nasa-api-website",
-  "homepage": "https://vensah.dev/NASA-API-website/",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -9,5 +9,4 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/vensah.dev/NASA-API-website/',
 })
