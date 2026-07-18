@@ -1,5 +1,6 @@
 {
   "name": "nasa-api-website",
+  "homepage": "https://vensah.dev/NASA-API-website/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,6 +14,7 @@
     "@tailwindcss/vite": "^4.3.2",
     "@unpic/react": "^1.0.2",
     "font": "^0.0.4",
+    "gh-pages": "^6.3.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-icons": "^5.7.0",
