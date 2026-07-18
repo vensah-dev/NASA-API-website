@@ -60,7 +60,6 @@ export const useDataStore = create<DataState>((set, get) => ({
         } catch (error) {
             console.log(error)
             console.error("Fetch failed", error);
-            // set({ loading: false });
         }
     },
 

@@ -25,7 +25,6 @@ function App() {
 
   const fetchData = useDataStore((state) => state.fetchData);
 
-  const loading = useDataStore((state) => state.loading);
   const data = useDataStore((state) => state.data);
 
   const initData = useDataStore((state) => state.initData);
