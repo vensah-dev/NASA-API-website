@@ -1,17 +1,15 @@
-import { useState } from 'react'
-import { IoMdArrowDropright } from "react-icons/io";
+import { useState, useEffect, useRef } from 'react'
 
-import { Image } from "@unpic/react";
 import LoadingSpinner from "./loading.tsx"
+
+import useIsVisible from './hooks/is-visible.tsx';
 
 
 // import reactLogo from './assets/react.svg'
 // import viteLogo from './assets/vite.svg'
 // import heroImg from './assets/hero.png'
 
-import { useEffect } from 'react';
 import {useDataStore} from "./globals.tsx"
-const API_KEY = import.meta.env.VITE_NASA_API;
 
 
 function App() {
@@ -23,6 +21,10 @@ function App() {
 
   const [dataIndex, setDataIndex] = useState(0);
 
+  const loadingSpinner = useRef<HTMLInputElement>(null);
+  const loadingSpinnerVisibility = useIsVisible(loadingSpinner);
+
+
   function nextData(){
     setDataIndex(dataIndex+1); 
     loadData(); 
@@ -30,7 +32,6 @@ function App() {
   function backData(){
     if(dataIndex-1 >= 0){
       setDataIndex(dataIndex-1); 
-
     }
   }
 
@@ -40,8 +41,25 @@ function App() {
     }, []
   );
 
+  useEffect(
+    () =>{
+
+      (async ()=>{
+        if (loadingSpinnerVisibility){
+          var promises = []
+          for (let i = 0; i < 3; i++){
+            promises.push(loadData()); 
+          }
+          await Promise.all(promises)
+        } 
+      })();
+
+    }, [loadingSpinner]
+
+  );
+
   return (
-    <div>
+    <div className={`${preloadedData.length < 3 ? "overflow-y-clip max-h-dvh h-dvh": "overflow-y-auto"}`}>
       {
         (preloadedData.length < 3) && (
           <div className="h-dvh w-dvw flex justify-center items-center bg-black z-100 absolute">
@@ -68,7 +86,7 @@ function App() {
               </div>
             
             ))}
-            <div className='flex flex-col w-dvw justify-center items-center py-16'>
+            <div ref={loadingSpinner} className='flex flex-col w-dvw justify-center items-center py-16'>
               <LoadingSpinner />
             </div>
           </div>

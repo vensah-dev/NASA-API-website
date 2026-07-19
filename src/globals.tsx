@@ -24,39 +24,21 @@ function preloadImage(url: string) {
 
 interface DataState {
     preloadedData: any[];
-    imageUrl: any,
-    apiUrl: string;
-    data: any;
 
-    setApiUrl: (newUrl: string) => void;
-    fetchData: () => Promise<void>;
+    fetchData: (currentURL:string) => Promise<void>;
     initData: () => Promise<void>;
     loadData: () => Promise<void>;
 }
 
 export const useDataStore = create<DataState>((set, get) => ({
     preloadedData: [],
-    imageUrl: null,
-    apiUrl: `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`, // Default URL
-    data: null,
 
-    // Action to update the URL from anywhere
-    setApiUrl: (newUrl:string) => set({ apiUrl: newUrl }),
-    setImageUrl: (newUrl:string) => set({ imageUrl: newUrl }),
-
-    // Action to fetch data using whatever the CURRENT url is
-    fetchData: async () => {
-        set({ data: null })
-
-
-        // get() grabs the most up-to-date values from this store
-        const currentUrl = get().apiUrl; 
-
+    fetchData: async (currentURL:string) => {
         try {
-            const response = await fetch(currentUrl);
+            const response = await fetch(currentURL);
             const result = await response.json();
             console.log(result)
-            set({ data: result});
+            return result
         } catch (error) {
             console.log(error)
             console.error("Fetch failed", error);
@@ -64,7 +46,7 @@ export const useDataStore = create<DataState>((set, get) => ({
     },
 
     initData: async()=>{
-        const maxPreloadAmount = 25
+        const maxPreloadAmount = 10
         for (var i = 0; i < maxPreloadAmount; i++){
             await get().loadData()
         }
@@ -72,19 +54,17 @@ export const useDataStore = create<DataState>((set, get) => ({
 
     loadData: async()=>{
 
+        var newData: any = null;
+
         while (true){
             const url: string = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${generateRandomDate()}`
-            get().setApiUrl(url)
-            await get().fetchData()
+            newData = await get().fetchData(url)
 
-            if (get().data.media_type == "image"){
+            if (newData.media_type == "image"){
                 break
             }
 
         }
-
-        const newData = get().data
-
 
         const imageURL = newData.url
         await preloadImage(imageURL)
