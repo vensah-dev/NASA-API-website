@@ -76,7 +76,7 @@ function App() {
         (detailView == null) ? (
           <div className='flex flex-col gap-24 py-32'>
             {preloadedData.map((data, index) => (
-              <div className="relative w-6xl mx-8 mx-auto group" key={index} onClick={()=>{setDetailView(data); console.log("Button pressed", detailView)}}>
+              <div className="relative w-6xl mx-8 mx-auto group hover:brightness-115" key={index} onClick={()=>{setDetailView(data); console.log("Button pressed", detailView)}}>
 
                 <img
                   src={data.url}
@@ -86,9 +86,13 @@ function App() {
 
                 <div className='group-hover:opacity-100 opacity-0 h-full w-full absolute inset-0'>
 
-                  <div className="absolute flex top-4 left-4 flex-col opacity-50 ">
+                  <div className="absolute flex top-4 left-4 opacity-50 ">
                     {/* <h1 className="text-white text-3xl font-semibold tracking-wide">{data.title}</h1> */}
+                    <h2 className="text-white/75 font-thin pl-2 pr-4">
+                      <FaCircleInfo className='h-full aspect-square'/>
+                    </h2>
                     <h2 className="text-white text-2xl font-thin">{data.date}</h2>
+
                   </div>
 
                   {/* <div className='absolute flex bottom-4 left-4 gap-4'>
