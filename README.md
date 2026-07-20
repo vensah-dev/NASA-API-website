@@ -9,9 +9,9 @@ In a future devlog i plan to add in features like a like button, a share button,
 
 ### Goals:
 
-- Preloading of images
-- Infinite scroll
-- Social media like UI
+- Preloading of images ✅
+- Infinite scroll ✅
+- Social media like UI ➖
 - Like, share buttons
 - ability to look for pictures from specific dates
 
