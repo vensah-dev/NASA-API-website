@@ -7,11 +7,15 @@ Currently the main part is that its an MVP that has all the functionality woking
 
 In a future devlog i plan to add in features like a like button, a share button, a button to get a high res download, support for youtube video embeds and change the UI to feel more Social Media-ish
 
-### Goals:
+## Goals:
 
 - Preloading of images ✅
 - Infinite scroll ✅
 - Social media like UI ➖
 - Like, share buttons
 - ability to look for pictures from specific dates
+
+## Current Recording
+
+https://github.com/user-attachments/assets/a1d8f9e4-4cbc-4a84-8272-6ffe1ffb3821
 
