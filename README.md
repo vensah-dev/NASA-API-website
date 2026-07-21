@@ -1,4 +1,7 @@
 # [NASA-gram](https://vensah.dev/NASA-API-website/)
+
+*note the project is still in its early development
+
 I wanted to do my own spin on the NASA API projects by making it scroll infinitely like Instagram or a social media app in general. You can scroll through and check out some images, hover over it for the date and click on it for even more info.
 
 The rationale, is to make it fun and engaging to look through these pictures, and one good way is to have an infinitely scrolling page with randomly loaded images which is a great way to check out the pictures NASA has without having to think of a specific date and input it.
